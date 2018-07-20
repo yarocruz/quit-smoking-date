@@ -1,0 +1,15 @@
+.App {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px;
+}
+h1 {
+  font-size: 3em;
+}
+p {
+  font-size: 1.8em;
+}
+.info {
+  color: #4a4a4a;
+  font-weight: bold;
+}
