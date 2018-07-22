@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import "./App.css";
 
 let today = new Date();
-let quitSmokingDate = new Date("07-17-2018 12:30");
+let quitSmokingDate = new Date("2018-07-17T12:30:00-04:30");
 let diffMs = today - quitSmokingDate; // milliseconds since quit day and today
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       today: new Date(),
-      quitSmokingDate: new Date("07-17-2018 12:30"),
+      quitSmokingDate: new Date("2018-07-17T12:30:00-04:30"),
       diffMs: today - quitSmokingDate, // milliseconds since quit day and today
       diffDays: Math.floor(diffMs / 86400000), // days
       diffHrs: Math.floor((diffMs % 86400000) / 3600000), // hours
@@ -53,7 +53,7 @@ class App extends Component {
   tick() {
     this.setState({
       today: new Date(),
-      quitSmokingDate: new Date("07-17-2018 12:30"),
+      quitSmokingDate: new Date("2018-07-1712:30:00Z:00-04:30"),
       diffMs: today - quitSmokingDate, // milliseconds since quit day and today
       diffDays: Math.floor(diffMs / 86400000), // days
       diffHrs: Math.floor((diffMs % 86400000) / 3600000), // hours
