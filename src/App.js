@@ -4,7 +4,9 @@ import "./App.css";
 
 let today = new Date();
 let quitSmokingDate = new Date("2018-07-17T12:30:00-04:30");
+
 let diffMs = today - quitSmokingDate; // milliseconds since quit day and today
+let diffDays = Math.floor(diffMs / 86400000);
 
 class App extends Component {
   constructor(props) {
@@ -16,6 +18,7 @@ class App extends Component {
       diffDays: Math.floor(diffMs / 86400000), // days
       diffHrs: Math.floor((diffMs % 86400000) / 3600000), // hours
       diffMins: Math.round(((diffMs % 86400000) % 3600000) / 60000), // minutes
+      moneySaved: (diffDays / 2) * 6,
       months: [
         "January",
         "February",
@@ -53,21 +56,26 @@ class App extends Component {
   tick() {
     this.setState({
       today: new Date(),
-      quitSmokingDate: new Date("2018-07-1712:30:00Z:00-04:30"),
+      quitSmokingDate: new Date("2018-07-1712:30:00Z:00Z"),
       diffMs: today - quitSmokingDate, // milliseconds since quit day and today
       diffDays: Math.floor(diffMs / 86400000), // days
       diffHrs: Math.floor((diffMs % 86400000) / 3600000), // hours
-      diffMins: Math.round(((diffMs % 86400000) % 3600000) / 60000) // minutes
+      diffMins: Math.round(((diffMs % 86400000) % 3600000) / 60000), // minutes
+      moneySaved: (diffDays / 2) * 6
     });
   }
 
   render() {
+    let diffMs = today - quitSmokingDate; // milliseconds since quit day and today
+    let diffDays = Math.floor(diffMs / 86400000); // days
+    let diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
+    let diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+    let moneySaved = (diffDays / 2) * 6;
     return (
       <div className="App">
         <h1>You Haven't Smoked in:</h1>
         <p>
-          {this.state.diffDays} Days, {this.state.diffHrs} Hours, and{" "}
-          {this.state.diffMins} Minutes
+          {diffDays} Days, {diffHrs} Hours, and {diffMins} Minutes
         </p>
         <p>
           It is {this.state.today.toLocaleTimeString()} on{" "}
@@ -75,6 +83,8 @@ class App extends Component {
           {this.state.months[today.getMonth()]} {this.state.today.getDate()}{" "}
           {this.state.today.getFullYear()}
         </p>
+
+        <p>You have saved an average of ${moneySaved} since your quit day.</p>
 
         <p className="info">Refresh the Browser to update the time.</p>
       </div>
